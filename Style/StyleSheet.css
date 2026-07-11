@@ -1,0 +1,2178 @@
+﻿/* ==========================================================================
+   1. Osnovni Reseti i Globalni Stilovi
+   ========================================================================== */
+body {
+    margin: 0;
+    padding: 0;
+    max-width:100%;
+    font-family: sans-serif; /* Osnovni font za tekstove */
+    overflow-x:hidden;
+}
+html {
+    scroll-behavior: smooth; /* Omogućuje glatko i elegantno klizanje do sekcije */
+}
+
+/* Tipografija */
+.iceberg-regular {
+    font-family: "Iceberg", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1 {
+    font-size: 90px;
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 20px 0;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+.icon {
+    width: 70px; /* Postavi idealnu širinu ikone */
+    height: 70px; /* Postavi idealnu visinu ikone */
+    object-fit: contain; /* Osigurava da se slika ne izobliči ako nije savršen kvadrat */
+    margin-bottom: 15px; /* Razmak između tvoje ikone i naslova ispod nje */
+    display: block; /* Omogućuje lakše centriranje */
+    margin-left: auto; /* Centriranje unutar kartice */
+    margin-right: auto; /* Centriranje unutar kartice */
+    /* Ako želiš da ikona blago reagira kad korisnik prijeđe mišem preko kartice */
+    transition: transform 0.3s ease;
+}
+
+/* Primjer efekta na hover: ikona se lagano poveća */
+.b-usluga:hover .icon {
+    transform: scale(1.1);
+}
+/* ==========================================================================
+   2. Main Hero Sekcija (Pozadina i Animacija)
+   ========================================================================== */
+.main,.main_frezanje, .main_podno, .main_centralno, .main_kotlovnica, .main_vodovod, .main_kupaonica, .main_iskopi, .main_drenaže, .main_okučnice {
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-image:url(../Slike/main.jpg);
+    display: flex;
+}
+
+/* ==========================================================================
+   3. Navigacija i Sadržaj u Hero Sekciji
+   ========================================================================== */
+
+.navbar {
+    position: fixed; /* Drži nav fiksiran na ekranu pri skrolanju */
+    display:flex;
+    align-content:center;
+    justify-content:center;
+    height:60px;
+    top: 0; /* Lijepi ga skroz za vrh */
+    left: 0; /* Lijepi ga skroz za lijevu marginu */
+    width: 100%; /* Rasteže ga preko cijele širine ekrana */
+    z-index: 1000; /* Osigurava da je nav uvijek iznad ostalog sadržaja */
+    background-color: #4fbae4; /* Boja pozadine se seli ovdje za "full-width" efekt */
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.2); /* Sjena na dnu nav-a */
+}
+.nav-con {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Sada savršeno centrira listu linkova */
+    position: relative; /* Omogućuje da logo i hamburger gumb budu fiksirani sa strane */
+    width: 100%;
+    padding: 5px;
+    max-width: 1600px;
+}
+.nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Osigurava da linkovi budu u sredini svog prostora */
+}
+.nav-logo {
+    position: absolute; /* Izvlači logo iz toka kako ne bi pomicao sredinu */
+    left: 20px; /* Fiksira ga uz lijevi rub (možeš prilagoditi broj) */
+    height: 50px;
+    width: 120px;
+}
+.nav-list li a, .dropbtn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ffffff;
+        text-align:center;
+        text-decoration: none;
+        font-weight: bold;
+        padding: 15px 24px; /* Malo povećan padding za bolji izgled */
+        transition: background-color 0.3s ease, color 0.3s ease;
+}
+.nav-toggle {
+    display: none;
+    background: transparent;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    position: absolute; /* Drži gumb fiksiran */
+    right: 20px; /* Gura ga uz desni rub */
+}
+.bar{
+    display:block;
+    width:25px;
+    height:3px;
+    margin:5px auto;
+    background:white;
+    transition:all 0.3s ease-in-out;
+}
+@media(max-width:880px){
+    .navbar{
+        backdrop-filter:none;
+    }
+    .nav-con .nav-list {
+        display: none;
+        flex-direction: column;
+        align-items: flex-start; /* Poravnava linkove ulijevo unutar mobilnog menija */
+        justify-content: flex-start; /* OVO JE KLJUČNO: Gura linkove na vrh menija umjesto na sredinu! */
+        gap: 1.7rem !important;
+        position: absolute;
+        height: 100vh;
+        width: 250px;
+        top: 0;
+        right: 0;
+        padding: 5rem 1.5rem; /* Ovaj gornji padding od 5rem osigurava da linkovi ne prekriju "X" gumb */
+        box-shadow: 0 10px 10px rgba(0,0,0,0.5);
+        backdrop-filter: blur(10px);
+        background-color: transparent; /* Opcionalno: možeš dodati boju pozadine ako je na mobitelu prozirno */
+    }
+    .nav-con .nav-list.active {
+        display:flex;
+    }
+    .nav-toggle{
+        display:block;
+        z-index:999;
+    }
+    .nav-toggle.active .bar:nth-child(2){
+        opacity:0;
+    }
+    .nav-toggle.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .nav-toggle.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    .nav-con .nav-list li a {
+        color: black;
+    }
+}
+@media(max-width:480px){
+    .nav-con{
+        padding:0 1rem;
+    }
+    .nav-logo{
+        font-size:1.7rem;
+    }
+    .nav-con .nav-list li a {
+        font-size: 1.2rem;
+        padding: 3px 15px;
+        color: black;
+    }
+}
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #122e3d;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.nav-list li a:hover, .dropdown:hover .dropbtn{
+    background-color: #f0ffff;
+    color: #000000;
+    border-radius: 5px; /* Smanjen radius da ljepše sjeda u gumb */
+}
+/* ==========================================================================
+   2. Sekcija o nama
+   ========================================================================== */
+.onama {
+    padding: 80px 20px;
+    background-color: #0078c9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .onama .n1 {
+        color: white;
+        text-shadow: 7px 8px 4px rgba(0,0,0,0.53);
+        margin-bottom: 40px;
+    }
+
+.m-onama {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px; /* Malo povećan razmak između lijeve i desne strane */
+    width: 100%;
+    max-width: 1500px;
+    align-items: flex-start; /* Poravnava vrh slike i vrh tekstova */
+}
+
+/* LIJEVA STRANA - SLIKA */
+.bm-onama {
+    border: 3px solid #ecffff;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 450px; /* Malo povećana da drži balans s tekstom */
+    height: 600px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("../Slike/Rad6/rad6_image1.jpg");
+    opacity: 0;
+    transform: translate(-100px, 0);
+    /* KLJUČNA PROMJENA: Razdvajamo tranzicije. 
+       Primijeti da box-shadow i border-color nemaju nikakav delay na kraju, pa hover reagira odmah! */
+    transition: opacity 0.6s ease-out, transform 0.4s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.bm-onama.prikazi {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+
+/* DESNA STRANA - KONTEJNER ZA KARTICE */
+.desno-onama {
+    display: flex;
+    flex-direction: column; /* SLAŽE KARTICE JEDNU ISPOD DRUGE */
+   
+    gap: 20px; /* Razmak između pojedinih tekstualnih kartica */
+    width: 100%;
+    max-width: 650px; /* Optimalna širina za čitanje teksta */
+}
+
+/* TEKSTUALNE KARTICE */
+.b-onama {
+    border: 3px solid black;
+    padding: 25px 30px;
+    position: relative;
+    width: 100%; /* Zauzima punu širinu desnog kontejnera (.desno-onama) */
+    box-sizing: border-box;
+    text-align: left; /* Lijevo poravnanje teksta izgleda puno urednije za duže odlomke */
+    border-radius: 15px 0px 15px 15px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    opacity: 0;
+    transform: translate(100px, 0);
+    /* KLJUČNA PROMJENA: Razdvajamo tranzicije. 
+       Primijeti da box-shadow i border-color nemaju nikakav delay na kraju, pa hover reagira odmah! */
+    transition: opacity 0.6s ease-out, transform 0.4s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.b-onama.prikazi {
+    opacity: 1;
+    transform: translate(0, 0);
+}
+.b-onama:nth-child(2) {
+    transition-delay: 0.1s, 0.1s, 0s, 0s;
+}
+
+.b-onama:nth-child(3) {
+    transition-delay: 0.2s, 0.2s, 0s, 0s;
+}
+
+.b-onama:nth-child(4) {
+    transition-delay: 0.3s, 0.3s, 0s, 0s;
+}
+    .b-onama h3 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: #001129;
+    }
+
+    .b-onama p {
+        margin: 0;
+        font-size: 15px; /* Blago povećano radi lakšeg čitanja na plavoj pozadini */
+        line-height: 1.6;
+        color: #444445;
+    }
+
+/* PRILAGODBA ZA MOBITELE - slika ide na vrh, tekstovi ispod, širine se prilagođavaju */
+@media (max-width: 992px) {
+    .bm-onama {
+        height: 400px; /* Na manjim ekranima slika ne mora biti previsoka */
+    }
+
+    .b-onama {
+        border-radius: 12px; /* Jednostavniji rubovi na mobitelu */
+        padding: 20px;
+    }
+}
+/* ==========================================================================
+   3. Sekcija Usluga (Popravljeno i Centrirano)
+   ========================================================================== */
+.usluge {
+    padding: 80px 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+.n1 {
+    color: #0880ce;
+    font-size: 70px;
+    text-align: center;
+    text-transform: uppercase;
+    margin-top: 0;
+    margin-bottom: 40px;
+}
+
+.m-usluge {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+}
+    .m-usluge a{
+        text-decoration:none;
+    }
+
+    .b-usluga {
+        border: 1px solid #e0e0e0;
+        padding: 30px 20px;
+        position: relative;
+        width: 100%;
+        max-width: 300px;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 8px;
+        background-color: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        /* Početno stanje */
+        opacity: 0;
+        transform: translate(-100px, 0);
+        /* KLJUČNA PROMJENA: Razdvajamo tranzicije. 
+       Primijeti da box-shadow i border-color nemaju nikakav delay na kraju, pa hover reagira odmah! */
+        transition: opacity 0.6s ease-out, transform 0.4s ease-out, box-shadow 0.3s ease, border-color 0.3s ease;
+    }
+
+    /* Krajnje stanje dolaska */
+    .b-usluga.prikazi {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    /* Zakašnjenje koje se primjenjuje samo na prve dvije tranzicije (opacity i transform) */
+    .b-usluga:nth-child(2) {
+        transition-delay: 0.1s, 0.1s, 0s, 0s;
+    }
+
+    .b-usluga:nth-child(3) {
+        transition-delay: 0.2s, 0.2s, 0s, 0s;
+    }
+
+    .b-usluga:nth-child(4) {
+        transition-delay: 0.3s, 0.3s, 0s, 0s;
+    }
+
+    .b-usluga:nth-child(5) {
+        transition-delay: 0.4s, 0.4s, 0s, 0s;
+    }
+
+    .b-usluga:nth-child(6) {
+        transition-delay: 0.5s, 0.5s, 0s, 0s;
+    }
+
+    .b-usluga:nth-child(7) {
+        transition-delay: 0.6s, 0.6s, 0s, 0s;
+    }
+
+    .b-usluga:nth-child(8) {
+        transition-delay: 0.7s, 0.7s, 0s, 0s;
+    }
+    .b-usluga:nth-child(9) {
+        transition-delay: 0.8s, 0.8s, 0s, 0s;
+    }
+    /* Makni ono staro pravilo s :not(.prikazi) i !important jer nam više ne treba! */
+
+    /* Efekt kada se mišem prijeđe preko kartice (Sada radi bez ikakvog kašnjenja) */
+
+    .b-usluga.prikazi:hover {
+        transform: translate(0, -5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transition-delay:-0.2s;
+        border-color: #0880ce;
+    }
+.a1{
+    border-radius:20px;
+    color:white;
+    background-color:#4e47ff;
+    border:1px solid black;
+    width:120px;
+    height:30px;
+    font-size:17px;
+    padding:5px 10px;;
+    text-decoration:none;
+}
+.usluga-ikona {
+    font-size: 45px;
+    color: #0880ce;
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+        .b-usluga.prikazi:hover .usluga-ikona {
+            transform: scale(1.1);
+        }
+    .b-usluga h3 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: #001129;
+    }
+    .b-usluga p {
+        margin: 0;
+        font-size: 14px; /* Malo smanjen font opisa radi bolje čitljivosti i balansa kartice */
+        line-height: 1.5; /* Profesionalni prored za lakše čitanje */
+        color: #555555;
+    }
+/* ==========================================================================
+   4. Sekcija odabir 
+   ========================================================================== */
+.odabir {
+    padding: 80px 20px;
+    background-color: #50bce3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+    .odabir .n1 {
+        color: white;
+        text-shadow: 7px 8px 4px rgba(0,0,0,0.53);
+    }
+.m-odabir {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.b-odabir {
+    border: 1px solid #e0e0e0;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 250px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 15px;
+    background-color: #ffffff;
+    /* Početno stanje - Skriveno i gurnuto 100px prema DOLJE */
+    opacity: 0;
+    transform: translate(0, 100px);
+    /* Tranzicije za dolazak i hover efekte bez kašnjenja na sjenama */
+    transition: opacity 0.6s ease-out, transform 0.4s ease-out, box-shadow 0.3s ease 0s, border-color 0.3s ease 0s;
+}
+
+    /* Krajnje stanje dolaska - Vraća se na svoju točnu poziciju (0, 0) */
+    .b-odabir.prikazi {
+        opacity: 1;
+        transform: translate(0, 0);
+    }
+
+    /* Zakašnjenje (Stagger) - Radi efekt "jedna po jedna" (Val odozdo) */
+    .b-odabir:nth-child(2) {
+        transition-delay: 0.1s, 0.1s, 0s, 0s;
+    }
+
+    .b-odabir:nth-child(3) {
+        transition-delay: 0.2s, 0.2s, 0s, 0s;
+    }
+
+    .b-odabir:nth-child(4) {
+        transition-delay: 0.3s, 0.3s, 0s, 0s;
+    }
+
+    .b-odabir:nth-child(5) {
+        transition-delay: 0.4s, 0.4s, 0s, 0s;
+    }
+.b-odabir h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    font-weight: 600;
+    color: #001129;
+}
+
+.b-odabir p {
+    margin: 0;
+    font-size: 14px; /* Malo smanjen font opisa radi bolje čitljivosti i balansa kartice */
+    line-height: 1.5; /* Profesionalni prored za lakše čitanje */
+    color: #555555;
+}
+
+/* ==========================================================================
+   5. Sekcija Radovi 
+   ========================================================================== */
+.radovi {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .radovi .n1 {
+        color: white;
+        text-shadow: 7px 8px 4px rgba(0,0,0,0.53);
+    }
+
+.m-radovi {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+    /* KLJUČNA PROMJENA: Centrira elemente unutar istog reda okomito (vertikalno)! */
+    align-items: center;
+}
+
+.b-v-radovi, .b-v-radovi2, .b-v-radovi3, .b-v-radovi4, .b-v-radovi5, .b-v-radovi6 {
+    border: 3px solid #ecffff;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    /* NOVE LINIJE ZA KONTROLU SLIKE: */
+    background-size: cover; /* Rasteže sliku preko cijelog boxa bez izobličenja */
+    background-repeat: no-repeat;
+    background-position: center; /* Fokusira središnji (najvažniji) dio slike */
+}
+.b-v-radovi{
+animation: changeimage1 15s infinite ease-in-out;
+}
+    
+    @keyframes changeimage1 {
+        0%, 12% {
+        background-image: url("../Slike/rad1/rad_image1.jpg");
+    }
+
+    13%, 25% {
+        background-image: url("../Slike/rad1/rad_image2.jpg");
+    }
+
+    26%, 38% {
+        background-image: url("../Slike/rad1/rad_image3.jpg");
+    }
+
+    39%, 51% {
+        background-image: url("../Slike/rad1/rad_image4.jpg");
+    }
+
+    52%, 64% {
+        background-image: url("../Slike/rad1/rad_image5.jpg");
+    }
+    65%, 77% {
+        background-image: url("../Slike/rad1/rad_image6.jpg");
+    }
+
+    78%, 90% {
+        background-image: url("../Slike/rad1/rad_image7.jpg");
+    }
+
+    91%, 100% {
+        background-image: url("../Slike/rad1/rad_image8.jpg");
+    }
+}
+.b-v-radovi2{
+    animation: changeimage2 10s infinite ease-in-out;
+}
+@keyframes changeimage2 {
+    0%, 12% {
+        background-image: url("../Slike/rad2/rad2_image1.jpg");
+    }
+
+    13%, 25% {
+        background-image: url("../Slike/rad2/rad2_image2.jpg");
+    }
+
+    26%, 38% {
+        background-image: url("../Slike/rad2/rad2_image3.jpg");
+    }
+
+    39%, 51% {
+        background-image: url("../Slike/rad2/rad2_image4.jpg");
+    }
+
+    52%, 64% {
+        background-image: url("../Slike/rad2/rad2_image5.jpg");
+    }
+
+    65%, 77% {
+        background-image: url("../Slike/rad2/rad2_image6.jpg");
+    }
+
+    78%, 90% {
+        background-image: url("../Slike/rad2/rad2_image7.jpg");
+    }
+
+    91%, 100% {
+        background-image: url("../Slike/rad2/rad2_image8.jpg");
+    }
+}
+.b-v-radovi3 {
+    animation: changeimage3 10s infinite ease-in-out;
+}
+
+@keyframes changeimage3 {
+    0%, 12% {
+        background-image: url("../Slike/rad3/rad3_image1.jpg");
+    }
+
+    13%, 25% {
+        background-image: url("../Slike/rad3/rad3_image2.jpg");
+    }
+
+    26%, 38% {
+        background-image: url("../Slike/rad3/rad3_image3.jpg");
+    }
+
+    39%, 51% {
+        background-image: url("../Slike/rad3/rad3_image4.jpg");
+    }
+
+    52%, 64% {
+        background-image: url("../Slike/rad3/rad3_image5.jpg");
+    }
+
+    65%, 77% {
+        background-image: url("../Slike/rad3/rad3_image6.jpg");
+    }
+
+    78%, 90% {
+        background-image: url("../Slike/rad3/rad3_image7.jpg");
+    }
+
+    91%, 100% {
+        background-image: url("../Slike/rad3/rad3_image8.jpg");
+    }
+}
+.b-v-radovi4 {
+    animation: changeimage4 10s infinite ease-in-out;
+}
+
+@keyframes changeimage4 {
+    0%, 10% {
+        background-image: url("../Slike/rad4/rad4_image1.jpg");
+    }
+
+    11%, 20% {
+        background-image: url("../Slike/rad4/rad4_image2.jpg");
+    }
+
+    21%, 30% {
+        background-image: url("../Slike/rad4/rad4_image3.jpg");
+    }
+
+    31%, 40% {
+        background-image: url("../Slike/rad4/rad4_image4.jpg");
+    }
+
+    41%, 50% {
+        background-image: url("../Slike/rad4/rad4_image5.jpg");
+    }
+
+    51%, 60% {
+        background-image: url("../Slike/rad4/rad4_image6.jpg");
+    }
+
+    61%, 70% {
+        background-image: url("../Slike/rad4/rad4_image7.jpg");
+    }
+
+    71%, 80% {
+        background-image: url("../Slike/rad4/rad4_image8.jpg");
+    }
+
+    81%, 90% {
+        background-image: url("../Slike/rad4/rad4_image9.jpg");
+    }
+
+    91%, 100% {
+        background-image: url("../Slike/rad4/rad4_image10.jpg");
+    }
+}
+.b-v-radovi5 {
+    animation: changeimage5 10s infinite ease-in-out;
+}
+
+@keyframes changeimage5 {
+    0%, 12% {
+        background-image: url("../Slike/rad5/rad5_image1.jpg");
+    }
+
+    13%, 25% {
+        background-image: url("../Slike/rad5/rad5_image2.jpg");
+    }
+
+    26%, 38% {
+        background-image: url("../Slike/rad5/rad5_image3.jpg");
+    }
+
+    39%, 51% {
+        background-image: url("../Slike/rad5/rad5_image4.jpg");
+    }
+
+    52%, 64% {
+        background-image: url("../Slike/rad5/rad5_image5.jpg");
+    }
+
+    65%, 77% {
+        background-image: url("../Slike/rad5/rad5_image6.jpg");
+    }
+
+    78%, 90% {
+        background-image: url("../Slike/rad5/rad5_image7.jpg");
+    }
+
+    91%, 100% {
+        background-image: url("../Slike/rad5/rad5_image8.jpg");
+    }
+}
+.b-radovi {
+    border: 1px solid #e0e0e0;
+    padding: 30px 20px;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #ffffff;
+    /* POPRAVAK ŠIRINE: Sada kartica zauzima točno pola reda, baš kao i slike */
+    width: calc(50% - 12.5px);
+    max-width: 580px;
+    /* Makni 'height: 500px' (ako ga ima) kako bi se visina prilagodila samom tekstu */
+}
+
+.b-v-radovi6{
+    animation:changeimage6 10s infinite ease-in-out;
+}
+@keyframes changeimage6{
+    0%, 20% {
+        background-image: url("../Slike/rad6/rad6_image1.jpg");
+    }
+
+    21%, 40% {
+        background-image: url("../Slike/rad6/rad6_image2.jpg");
+    }
+
+    41%, 60% {
+        background-image: url("../Slike/rad6/rad6_image3.jpg");
+    }
+
+    61%, 80% {
+        background-image: url("../Slike/rad6/rad6_image4.jpg");
+    }
+
+    81%, 100% {
+        background-image: url("../Slike/rad6/rad6_image5.jpg");
+    }
+
+}
+
+    .b-radovi h3 {
+        margin: 0 0 10px 0;
+        font-size: 18px;
+        font-weight: 600;
+        color: #001129;
+    }
+
+/* ==========================================================================
+   6. Sekcija Kontakti
+   ========================================================================== */
+.kontakti {
+    padding: 80px 20px;
+    background-color: #037aca;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+    .kontakti .n1 {
+        color: white;
+        text-shadow: 7px 8px 4px rgba(0,0,0,0.53);
+        margin-top: 0;
+        margin-bottom: 40px;
+    }
+
+.m-kontakti {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+    align-items: stretch; /* Prisiljava sve tri kartice da budu potpuno jednake visine */
+}
+
+.b-kontakti {
+    border: 1px solid #e0e0e0;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 400px; /* Malo povećano radi boljeg prostora za radno vrijeme i kartu */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+    .b-kontakti h3 {
+        margin: 0 0 15px 0;
+        font-size: 20px;
+        font-weight: 600;
+        color: #001129;
+    }
+
+.kontakt-red {
+    display: flex;
+    align-items: center; /* Centrira ikonu i tekst vertikalno u istoj liniji */
+    gap: 20px; /* Razmak između ikone i teksta (prilagodi po želji) */
+    margin-bottom: 12px; /* Razmak između različitih kontakata */
+}
+
+    /* Mičemo zadane margine s p tagova unutar našeg reda kako ne bi gurale tekst */
+    .kontakt-red p {
+        margin: 0;
+    }
+
+/* Stiliziranje telefonskog broja/linka */
+.kontakt-link {
+    color: #037aca;
+    font-size: 25px;
+    font-weight: 700;
+    transition: color 0.3s ease;
+}
+
+    .kontakt-link:hover {
+        color: #143a51;
+    }
+
+/* Uredno poravnanje radnog vremena s lijeva na desno */
+.radno-vrijeme {
+    width: 100%;
+    text-align: left;
+}
+
+    .radno-vrijeme p {
+        margin: 6px 0;
+        font-size: 14px;
+        color: #555555;
+        display: flex;
+        justify-content: space-between; /* Razdvaja dane i sate na rubove kartice */
+    }
+
+    .radno-vrijeme span {
+        font-weight: 600;
+        color: #001129;
+    }
+
+/* Okvir za Google kartu da sjedne glatko u dizajn */
+.b-kontakti iframe {
+    border-radius: 6px;
+    margin-top: auto; /* Gura kartu na samo dno kartice radi simetrije */
+}
+.b-gumb-drustvene {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px; /* Razmak između ikone i teksta */
+    padding: 20px;
+    width: calc(50% - 12.5px); /* Zauzimaju točno pola reda (dva gumba u redu) */
+    max-width: 400px; /* Savršeno se poravnava s proporcijama gornjeg reda */
+    box-sizing: border-box;
+    border-radius: 30px;
+    background-color: #ffffff;
+    border: 2px solid #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 600;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+    /* Stilovi za ikone unutar gumba */
+    .b-gumb-drustvene i {
+        font-size: 28px;
+        transition: transform 0.3s ease;
+    }
+
+/* Posebne boje i hover efekti za pojedini brend */
+.fb-boja {
+    color: #1877F2; /* Facebook plava */
+}
+
+    .fb-boja:hover {
+        background-color: #1877F2;
+        color: #ffffff;
+        border-color: #1877F2;
+        box-shadow: 0 8px 15px rgba(24, 119, 242, 0.3);
+    }
+
+.ig-boja {
+    color: #E1306C; /* Instagram ružičasta/crvena */
+}
+
+    .ig-boja:hover {
+        background-color: #E1306C;
+        color: #ffffff;
+        border-color: #E1306C;
+        box-shadow: 0 8px 15px rgba(225, 48, 108, 0.3);
+    }
+
+/* Efekt skakanja ikone kada se prijeđe mišem preko gumba */
+.b-gumb-drustvene:hover i {
+    transform: scale(1.15) rotate(-5deg);
+}
+
+/* Prilagodba za mobitele - na uskim ekranima gumbi idu jedan ispod drugog na 100% širine */
+@media (max-width: 768px) {
+    .b-gumb-drustvene {
+        width: 100%;
+        max-width: 350px; /* Prati širinu gornjih kontakt boxeva na mobitelu */
+    }
+}
+/* ==========================================================================
+   6. Sekcija frezanje
+   ========================================================================== */
+.main_frezanje {
+    background-image: url("../Slike/Frezanje/Frezanje_image.png");
+    min-height:70vh;
+    background-position:top;
+}
+.n2{
+    color:black;
+    font-size:25px;
+    text-align:center;
+}
+.s-frezanje {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+.s-frezanje .n1{
+    color:#ffffff;
+}
+.g_frezanje {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+.bs_frezanje{
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: cover; 
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.bs_frezanje:nth-child(1) {
+    background-image: url("../Slike/Frezanje/Frezanje_image1.png");
+}
+.bs_frezanje:nth-child(2) {
+    background-image: url("../Slike/Frezanje/Frezanje_image2.png");
+}
+.bs_frezanje:nth-child(3) {
+    background-image: url("../Slike/Frezanje/Frezanje_image3.png");
+}
+.bs_frezanje:nth-child(4) {
+    background-image: url("../Slike/Frezanje/Frezanje_image5.png");
+}
+.bs_frezanje:nth-child(5) {
+    background-image: url("../Slike/Frezanje/Frezanje_image6.png");
+}
+.bs_frezanje:nth-child(6) {
+    background-image: url("../Slike/Frezanje/Frezanje_image7.png");
+}
+.bs_frezanje:nth-child(7) {
+    background-image: url("../Slike/Frezanje/Frezanje_image8.png");
+}
+.bs_frezanje:nth-child(8) {
+    background-image: url("../Slike/Frezanje/Frezanje_image9.png");
+}
+.bs_frezanje:nth-child(9) {
+    background-image: url("../Slike/Frezanje/Frezanje_image10.png");
+}
+.bs_frezanje:nth-child(10) {
+    background-image: url("../Slike/Frezanje/Frezanje_image11.png");
+}
+.bs_frezanje:nth-child(11) {
+    background-image: url("../Slike/Frezanje/Frezanje_image12.png");
+}
+.bs_frezanje:nth-child(12) {
+    background-image: url("../Slike/Frezanje/Frezanje_image13.png");
+}
+.bs_frezanje:nth-child(13) {
+    background-image: url("../Slike/Frezanje/Frezanje_image14.png");
+}
+.bs_frezanje:nth-child(14) {
+    background-image: url("../Slike/Frezanje/Frezanje_image15.png");
+}
+.bs_frezanje:nth-child(15) {
+    background-image: url("../Slike/Frezanje/Frezanje_image16.png");
+}
+.bs_frezanje:nth-child(16) {
+    background-image: url("../Slike/Frezanje/Frezanje_image17.png");
+}
+.bs_frezanje:nth-child(17) {
+    background-image: url("../Slike/Frezanje/Frezanje_image18.png");
+}
+.bs_frezanje:nth-child(18) {
+    background-image: url("../Slike/Frezanje/Frezanje_image20.png");
+}
+.bs_frezanje:nth-child(19) {
+    background-image: url("../Slike/Frezanje/Frezanje_image21.png");
+}
+.bs_frezanje:nth-child(20) {
+    background-image: url("../Slike/Frezanje/Frezanje_image22.png");
+}
+/* ==========================================================================
+   7. Sekcija podno
+   ========================================================================== */
+.main_podno {
+    background-image: url("../Slike/Podno/Podno_image35.png");
+    min-height: 70vh;
+    background-position:bottom;
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-podno {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-podno .n1 {
+        color: #ffffff;
+    }
+
+.g_podno {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_podno {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .bs_podno:nth-child(1) {
+        background-image: url("../Slike/Podno/Podno_image1.png");
+    }
+
+    .bs_podno:nth-child(3) {
+        padding:0;
+    }
+.kutija-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Reže video da savršeno popuni 300x400px bez distorzije */
+    z-index: 1;
+}
+
+
+.bs_podno:nth-child(2) {
+    background-image: url("../Slike/Podno/Podno_image2.png");
+}
+
+.bs_podno:nth-child(4) {
+    background-image: url("../Slike/Podno/Podno_image3.png");
+}
+
+.bs_podno:nth-child(5) {
+    background-image: url("../Slike/Podno/Podno_image4.png");
+}
+
+.bs_podno:nth-child(6) {
+    background-image: url("../Slike/Podno/Podno_image5.png");
+}
+.bs_podno:nth-child(7) {
+    background-image: url("../Slike/Podno/Podno_image6.png");
+}
+
+.bs_podno:nth-child(8) {
+    background-image: url("../Slike/Podno/Podno_image10.png");
+}
+
+.bs_podno:nth-child(9) {
+    background-image: url("../Slike/Podno/Podno_image11.png");
+}
+
+.bs_podno:nth-child(10) {
+    background-image: url("../Slike/Podno/Podno_image12.png");
+}
+
+.bs_podno:nth-child(11) {
+    background-image: url("../Slike/Podno/Podno_image13.png");
+}
+
+.bs_podno:nth-child(12) {
+    background-image: url("../Slike/Podno/Podno_image14.png");
+}
+
+.bs_podno:nth-child(13) {
+    background-image: url("../Slike/Podno/Podno_image15.png");
+}
+
+.bs_podno:nth-child(14) {
+    background-image: url("../Slike/Podno/Podno_image16.png");
+}
+
+.bs_podno:nth-child(15) {
+    background-image: url("../Slike/Podno/Podno_image17.png");
+}
+
+.bs_podno:nth-child(16) {
+    background-image: url("../Slike/Podno/Podno_image18.png");
+}
+
+.bs_podno:nth-child(17) {
+    background-image: url("../Slike/Podno/Podno_image19.png");
+}
+
+.bs_podno:nth-child(18) {
+    background-image: url("../Slike/Podno/Podno_image20.png");
+}
+
+.bs_podno:nth-child(19) {
+    background-image: url("../Slike/Podno/Podno_image21.png");
+}
+
+.bs_podno:nth-child(20) {
+    background-image: url("../Slike/Podno/Podno_image22.png");
+}
+
+.bs_podno:nth-child(21) {
+    background-image: url("../Slike/Podno/Podno_image23.png");
+}
+
+.bs_podno:nth-child(22) {
+    background-image: url("../Slike/Podno/Podno_image24.png");
+}
+
+.bs_podno:nth-child(23) {
+    background-image: url("../Slike/Podno/Podno_image25.png");
+}
+
+.bs_podno:nth-child(24) {
+    background-image: url("../Slike/Podno/Podno_image26.png");
+}
+
+.bs_podno:nth-child(25) {
+    background-image: url("../Slike/Podno/Podno_image27.png");
+}
+
+.bs_podno:nth-child(26) {
+    background-image: url("../Slike/Podno/Podno_image28.png");
+}
+
+.bs_podno:nth-child(27) {
+    background-image: url("../Slike/Podno/Podno_image29.png");
+}
+
+.bs_podno:nth-child(28) {
+    background-image: url("../Slike/Podno/Podno_image30.png");
+}
+
+.bs_podno:nth-child(29) {
+    background-image: url("../Slike/Podno/Podno_image31.png");
+}
+
+.bs_podno:nth-child(30) {
+    background-image: url("../Slike/Podno/Podno_image32.png");
+}
+
+.bs_podno:nth-child(31) {
+    background-image: url("../Slike/Podno/Podno_image33.png");
+}
+
+.bs_podno:nth-child(32) {
+    background-image: url("../Slike/Podno/Podno_image34.png");
+}
+
+.bs_podno:nth-child(33) {
+    background-image: url("../Slike/Podno/Podno_image35.png");
+}
+
+.bs_podno:nth-child(34) {
+    background-image: url("../Slike/Podno/Podno_image36.png");
+}
+
+.bs_podno:nth-child(35) {
+    background-image: url("../Slike/Podno/Podno_image37.png");
+}
+
+.bs_podno:nth-child(36) {
+    background-image: url("../Slike/Podno/Podno_image38.png");
+}
+
+.bs_podno:nth-child(37) {
+    background-image: url("../Slike/Podno/Podno_image39.png");
+}
+/* ==========================================================================
+   8. Sekcija centralno
+   ========================================================================== */
+.main_centralno {
+    background-image: url("../Slike/centralno/Centralno_image5.png");
+    min-height: 70vh;
+
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-centralno {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-centralno .n1 {
+        color: #ffffff;
+    }
+
+.g_centralno {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_centralno {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .bs_centralno:nth-child(1) {
+        background-image: url("../Slike/centralno/Centralno_image2.png");
+    }
+
+    .bs_centralno:nth-child(2) {
+        background-image: url("../Slike/centralno/Centralno_image3.png");
+    }
+
+    .bs_centralno:nth-child(3) {
+        background-image: url("../Slike/centralno/Centralno_image4.png");
+    }
+
+    .bs_centralno:nth-child(4) {
+        background-image: url("../Slike/centralno/Centralno_image5.png");
+    }
+
+    .bs_centralno:nth-child(5) {
+        background-image: url("../Slike/centralno/Centralno_image6.png");
+    }
+
+    .bs_centralno:nth-child(6) {
+        background-image: url("../Slike/centralno/Centralno_image10.png");
+    }
+
+    .bs_centralno:nth-child(7) {
+        background-image: url("../Slike/centralno/Centralno_image11.png");
+    }
+
+    .bs_centralno:nth-child(8) {
+        background-image: url("../Slike/centralno/Centralno_image12.png");
+    }
+
+    .bs_centralno:nth-child(9) {
+        background-image: url("../Slike/centralno/Centralno_image13.png");
+    }
+/* ==========================================================================
+   9. Sekcija kotlovnice
+   ========================================================================== */
+.main_kotlovnice {
+    background-image: url("../Slike/kotlovnice/kotlovnice_image4.png");
+    min-height: 70vh;
+    background-position:center;
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-kotlovnice {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-kotlovnice .n1 {
+        color: #ffffff;
+    }
+
+.g_kotlovnice {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_kotlovnice {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .bs_kotlovnice:nth-child(1) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image1.png");
+        height:225px;
+    }
+
+    .bs_kotlovnice:nth-child(2) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image2.png");
+    }
+
+    .bs_kotlovnice:nth-child(3) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image3.png");
+    }
+
+    .bs_kotlovnice:nth-child(4) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image4.png");
+        height: 225px;
+    }
+
+    .bs_kotlovnice:nth-child(5) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image5.png");
+        height: 225px;
+    }
+
+    .bs_kotlovnice:nth-child(6) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image6.png");
+    }
+
+    .bs_kotlovnice:nth-child(7) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image7.png");
+    }
+
+    .bs_kotlovnice:nth-child(8) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image8.png");
+        height: 225px;
+    }
+
+    .bs_kotlovnice:nth-child(9) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image9.png");
+    }
+    .bs_kotlovnice:nth-child(10) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image10.png");
+    }
+
+    .bs_kotlovnice:nth-child(11) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image11.png");
+    }
+
+    .bs_kotlovnice:nth-child(12) {
+        background-image: url("../Slike/kotlovnice/kotlovnice_image12.png");
+    }
+/* ==========================================================================
+   10. Sekcija vodovod
+   ========================================================================== */
+.main_vodovod {
+    background-image: url("../Slike/vodovod/vodovod_image4.png");
+    min-height: 70vh;
+    background-position: center;
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-vodovod {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-vodovod .n1 {
+        color: #ffffff;
+    }
+
+.g_vodovod {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_vodovod {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .bs_vodovod:nth-child(1) {
+        background-image: url("../Slike/vodovod/vodovod_image1.png");
+    }
+
+    .bs_vodovod:nth-child(2) {
+        background-image: url("../Slike/vodovod/vodovod_image2.png");
+    }
+
+    .bs_vodovod:nth-child(3) {
+        background-image: url("../Slike/vodovod/vodovod_image15.png");
+        height:225px;
+    }
+
+    .bs_vodovod:nth-child(4) {
+        background-image: url("../Slike/vodovod/vodovod_image16.png");
+    }
+
+    .bs_vodovod:nth-child(5) {
+        background-image: url("../Slike/vodovod/vodovod_image9.png");
+    }
+
+    .bs_vodovod:nth-child(6) {
+        background-image: url("../Slike/vodovod/vodovod_image11.png");
+    }
+
+    .bs_vodovod:nth-child(7) {
+        background-image: url("../Slike/vodovod/vodovod_image8.png");
+        height: 225px;
+    }
+
+    .bs_vodovod:nth-child(8) {
+        background-image: url("../Slike/vodovod/vodovod_image18.png");
+        height: 225px;
+    }
+
+    .bs_vodovod:nth-child(9) {
+        background-image: url("../Slike/vodovod/vodovod_image5.png");
+        height: 225px;
+    }
+
+    .bs_vodovod:nth-child(10) {
+        background-image: url("../Slike/vodovod/vodovod_image10.png");
+    }
+
+    .bs_vodovod:nth-child(11) {
+        background-image: url("../Slike/vodovod/vodovod_image23.png");
+    }
+
+    .bs_vodovod:nth-child(12) {
+        background-image: url("../Slike/vodovod/vodovod_image12.png");
+    }
+
+    .bs_vodovod:nth-child(13) {
+        background-image: url("../Slike/vodovod/vodovod_image13.png");
+    }
+
+    .bs_vodovod:nth-child(14) {
+        background-image: url("../Slike/vodovod/vodovod_image14.png");
+    }
+
+    .bs_vodovod:nth-child(15) {
+        background-image: url("../Slike/vodovod/vodovod_image3.png");
+    }
+
+    .bs_vodovod:nth-child(16) {
+        background-image: url("../Slike/vodovod/vodovod_image4.png");
+    }
+
+    .bs_vodovod:nth-child(17) {
+        background-image: url("../Slike/vodovod/vodovod_image17.png");
+    }
+
+    .bs_vodovod:nth-child(18) {
+        background-image: url("../Slike/vodovod/vodovod_image6.png");
+        height: 225px;
+    }
+
+    .bs_vodovod:nth-child(19) {
+        background-image: url("../Slike/vodovod/vodovod_image19.png");
+    }
+
+    .bs_vodovod:nth-child(20) {
+        background-image: url("../Slike/vodovod/vodovod_image20.png");
+    }
+
+    .bs_vodovod:nth-child(21) {
+        background-image: url("../Slike/vodovod/vodovod_image21.png");
+    }
+
+    .bs_vodovod:nth-child(22) {
+        background-image: url("../Slike/vodovod/vodovod_image22.png");
+    }
+/* ==========================================================================
+   11. Sekcija kupaonice
+   ========================================================================== */
+.main_kupaonice {
+    background-image: url("../Slike/kupaonice/kupaonice_image9.png");
+    min-height: 70vh;
+    background-position: center;
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-kupaonice {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-kupaonice .n1 {
+        color: #ffffff;
+    }
+
+.g_kupaonice {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_kupaonice {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .bs_kupaonice:nth-child(1) {
+        background-image: url("../Slike/kupaonice/kupaonice_image1.png");
+    }
+
+    .bs_kupaonice:nth-child(2) {
+        background-image: url("../Slike/kupaonice/kupaonice_image15.png");
+    }
+
+    .bs_kupaonice:nth-child(3) {
+        background-image: url("../Slike/kupaonice/kupaonice_image16.png");
+    }
+
+    .bs_kupaonice:nth-child(4) {
+        background-image: url("../Slike/kupaonice/kupaonice_image18.png");
+    }
+
+    .bs_kupaonice:nth-child(5) {
+        background-image: url("../Slike/kupaonice/kupaonice_image19.png");
+    }
+
+    .bs_kupaonice:nth-child(6) {
+        background-image: url("../Slike/kupaonice/kupaonice_image20.png");
+    }
+
+    .bs_kupaonice:nth-child(7) {
+        background-image: url("../Slike/kupaonice/kupaonice_image14.png");
+    }
+
+    .bs_kupaonice:nth-child(8) {
+        background-image: url("../Slike/kupaonice/kupaonice_image2.png");
+    }
+
+    .bs_kupaonice:nth-child(9) {
+        background-image: url("../Slike/kupaonice/kupaonice_image9.png");
+        height: 225px;
+    }
+
+    .bs_kupaonice:nth-child(10) {
+        background-image: url("../Slike/kupaonice/kupaonice_image10.png");
+        height: 225px;
+    }
+
+    .bs_kupaonice:nth-child(11) {
+        background-image: url("../Slike/kupaonice/kupaonice_image11.png");
+    }
+
+    .bs_kupaonice:nth-child(12) {
+        background-image: url("../Slike/kupaonice/kupaonice_image13.png");
+    }
+
+    .bs_kupaonice:nth-child(13) {
+        padding:0;
+    }
+
+    .bs_kupaonice:nth-child(14) {
+        background-image: url("../Slike/kupaonice/kupaonice_image6.png");
+    }
+
+    .bs_kupaonice:nth-child(15) {
+        background-image: url("../Slike/kupaonice/kupaonice_image4.png");
+    }
+
+    .bs_kupaonice:nth-child(16) {
+        background-image: url("../Slike/kupaonice/kupaonice_image31.png");
+        height: 225px;
+    }
+
+    .bs_kupaonice:nth-child(17) {
+        background-image: url("../Slike/kupaonice/kupaonice_image21.png");
+    }
+
+    .bs_kupaonice:nth-child(18) {
+        background-image: url("../Slike/kupaonice/kupaonice_image28.png");
+    }
+
+    .bs_kupaonice:nth-child(19) {
+        background-image: url("../Slike/kupaonice/kupaonice_image23.png");
+    }
+
+    .bs_kupaonice:nth-child(20) {
+        background-image: url("../Slike/kupaonice/kupaonice_image24.png");
+    }
+
+    .bs_kupaonice:nth-child(21) {
+        background-image: url("../Slike/kupaonice/kupaonice_image27.png");
+    }
+
+    .bs_kupaonice:nth-child(22) {
+        background-image: url("../Slike/kupaonice/kupaonice_image25.png");
+    }
+
+    .bs_kupaonice:nth-child(23) {
+        background-image: url("../Slike/kupaonice/kupaonice_image26.png");
+    }
+
+    .bs_kupaonice:nth-child(24) {
+        background-image: url("../Slike/kupaonice/kupaonice_image3.png");
+        height: 225px;
+    }
+
+    .bs_kupaonice:nth-child(25) {
+        background-image: url("../Slike/kupaonice/kupaonice_image5.png");
+    }
+
+    .bs_kupaonice:nth-child(26) {
+        background-image: url("../Slike/kupaonice/kupaonice_image30.png");
+    }
+
+    .bs_kupaonice:nth-child(27) {
+        background-image: url("../Slike/kupaonice/kupaonice_image32.png");
+    }
+    .bs_kupaonice:nth-child(28) {
+        background-image: url("../Slike/kupaonice/kupaonice_image33.png");
+    }
+/* ==========================================================================
+   12. Sekcija iskopi
+   ========================================================================== */
+.main_iskopi {
+    background-image: url("../Slike/iskopi/iskopi_image4.png");
+    min-height: 70vh;
+    background-position: center;
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-iskopi {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-iskopi .n1 {
+        color: #ffffff;
+    }
+
+.g_iskopi {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_iskopi {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+    .bs_iskopi:nth-child(1) {
+        background-image: url("../Slike/iskopi/iskopi_image1.png");
+
+    }
+
+    .bs_iskopi:nth-child(2) {
+        background-image: url("../Slike/iskopi/iskopi_image2.png");
+    }
+
+    .bs_iskopi:nth-child(3) {
+        background-image: url("../Slike/iskopi/iskopi_image3.png");
+    }
+
+    .bs_iskopi:nth-child(4) {
+        background-image: url("../Slike/iskopi/iskopi_image4.png");
+
+    }
+
+    .bs_iskopi:nth-child(5) {
+        background-image: url("../Slike/iskopi/iskopi_image5.png");
+
+    }
+
+    .bs_iskopi:nth-child(6) {
+        background-image: url("../Slike/iskopi/iskopi_image6.png");
+    }
+
+    .bs_iskopi:nth-child(7) {
+        background-image: url("../Slike/iskopi/iskopi_image7.png");
+    }
+
+    .bs_iskopi:nth-child(8) {
+        background-image: url("../Slike/iskopi/iskopi_image8.png");
+        height: 225px;
+    }
+
+    .bs_iskopi:nth-child(9) {
+        background-image: url("../Slike/iskopi/iskopi_image9.png");
+        height: 225px;
+    }
+    .bs_iskopi:nth-child(10) {
+        background-image: url("../Slike/iskopi/iskopi_image9.png");
+        height: 225px;
+    }
+
+/* ==========================================================================
+   13. Sekcija drenaza
+   ========================================================================== */
+.main_drenaza {
+    background-image: url("../Slike/drenaže/drenaze_image5.png");
+    min-height: 70vh;
+    background-position:center;
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-drenaza {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-drenaza .n1 {
+        color: #ffffff;
+    }
+
+.g_drenaza {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_drenaza {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+    .bs_drenaza:nth-child(1) {
+        background-image: url("../Slike/drenaže/drenaze_image1.png");
+    }
+
+    .bs_drenaza:nth-child(2) {
+        background-image: url("../Slike/drenaže/drenaze_image2.png");
+    }
+
+    .bs_drenaza:nth-child(3) {
+        background-image: url("../Slike/drenaže/drenaze_image3.png");
+    }
+
+    .bs_drenaza:nth-child(4) {
+        background-image: url("../Slike/drenaže/drenaze_image4.png");
+        height:225px;
+    }
+/* ==========================================================================
+   14. Sekcija okucnica
+   ========================================================================== */
+.main_okucnica {
+    background-image: url("../Slike/okućnice/okucnice_image.png");
+    min-height: 70vh;
+    background-position: bottom;
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-okucnica {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-okucnica .n1 {
+        color: #ffffff;
+    }
+
+.g_okucnica {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_okucnica {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+    .bs_okucnica:nth-child(1) {
+        background-image: url("../Slike/okućnice/okucnice_image1.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(2) {
+        background-image: url("../Slike/okućnice/okucnice_image2.png");
+    }
+
+    .bs_okucnica:nth-child(3) {
+        background-image: url("../Slike/okućnice/okucnice_image3.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(4) {
+        background-image: url("../Slike/okućnice/okucnice_image4.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(5) {
+        background-image: url("../Slike/okućnice/okucnice_image5.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(6) {
+        background-image: url("../Slike/okućnice/okucnice_image6.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(7) {
+        background-image: url("../Slike/okućnice/okucnice_image7.png");
+    }
+
+    .bs_okucnica:nth-child(8) {
+        background-image: url("../Slike/okućnice/okucnice_image8.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(9) {
+        background-image: url("../Slike/okućnice/okucnice_image9.png");
+    }
+
+    .bs_okucnica:nth-child(10) {
+        background-image: url("../Slike/okućnice/okucnice_image10.png");
+    }
+
+    .bs_okucnica:nth-child(11) {
+        background-image: url("../Slike/okućnice/okucnice_image11.png");
+    }
+
+    .bs_okucnica:nth-child(12) {
+        background-image: url("../Slike/okućnice/okucnice_image12.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(13) {
+        background-image: url("../Slike/okućnice/okucnice_image13.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(14) {
+        background-image: url("../Slike/okućnice/okucnice_image14.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(15) {
+        background-image: url("../Slike/okućnice/okucnice_image15.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(16) {
+        background-image: url("../Slike/okućnice/okucnice_image16.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(17) {
+        background-image: url("../Slike/okućnice/okucnice_image17.png");
+        height: 225px;
+    }
+
+    .bs_okucnica:nth-child(18) {
+        background-image: url("../Slike/okućnice/okucnice_image18.png");
+    }
+
+    .bs_okucnica:nth-child(19) {
+        background-image: url("../Slike/okućnice/okucnice_image19.png");
+    }
+
+    .bs_okucnica:nth-child(20) {
+        background-image: url("../Slike/okućnice/okucnice_image20.png");
+    }
+
+    .bs_okucnica:nth-child(21) {
+        background-image: url("../Slike/okućnice/okucnice_image21.png");
+    }
+
+    .bs_okucnica:nth-child(22) {
+        background-image: url("../Slike/okućnice/okucnice_image22.png");
+    }
+/* ==========================================================================
+   15. RESPONZIVNI DIZAJN (Media Queries za tablete i mobitele)
+   ========================================================================== */
+
+/* --- TABLETI I MANJI LAPTOPI (max-width: 1024px) --- */
+@media (max-width: 1024px) {
+    /* Smanjivanje ogromnih naslova */
+    h1 { font-size: 65px; }
+    .n1 { font-size: 50px; }
+
+    /* Radovi - prilagodba da i dalje stanu 2 u red, ali uže */
+    .b-radovi, .b-v-radovi, .b-v-radovi2, .b-v-radovi3, .b-v-radovi4, .b-v-radovi5, .b-v-radovi6 {
+        width: calc(50% - 15px);
+        height: 400px;
+    }
+    .main, .main_frezanje, .main_podno, .main_centralno, .main_kotlovnica, .main_vodovod, .main_kupaonica, .main_iskopi, .main_drenaže, .main_okučnice {
+        background-attachment: scroll; /* Gasi fiksirani efekt koji radi probleme na mobitelu */
+        min-height: 45vh; /* Smanjuje visinu sekcije kako bi se vidjelo više slike u širinu */
+        background-position: center; /* Drži fokus na sredini slike */
+    }
+}
+
+/* --- MOBITELI (LANDSCAPE) I MALI TABLETI (max-width: 768px) --- */
+@media (max-width: 768px) {
+    /* Tipografija za mobitele */
+    h1 { font-size: 45px; }
+    .n1 { font-size: 38px; margin-bottom: 25px; }
+
+
+    /* Sekcija O nama */
+    .m-onama { flex-direction: column; align-items: center; }
+    .bm-onama { height: 350px; max-width: 100%; 
+                background-size:cover;
+    }
+    .desno-onama { max-width: 100%; 
+    }
+
+    /* Kartice usluga, odabira i kontakata na punu širinu */
+    .b-usluga, .b-odabir, .b-kontakti {
+        max-width: 40%;
+        margin-bottom: 10px;
+    }
+
+    /* Radovi idu jedan ispod drugog na mobitelu */
+    .b-radovi, .b-v-radovi, .b-v-radovi2, .b-v-radovi3, .b-v-radovi4, .b-v-radovi5, .b-v-radovi6 {
+        width: 100%;
+        max-width: 100%;
+        height: 500px;
+    }
+
+    /* GALERIJE (Frezanje, Podno, Kupaonice, itd.) 
+       Prisiljavamo sve slike da idu na 100% širine i ujednačavamo visinu 
+       kako bi na mobitelu izgledalo kao uredan "feed" */
+    
+}
+
+/* --- MALI MOBITELI (PORTRAIT) (max-width: 480px) --- */
+@media (max-width: 480px) {
+    h1 { font-size: 35px; }
+    .n1 { font-size: 30px; }
+    
+    /* Gumbi društvenih mreža se lome jedan ispod drugog */
+    .b-gumb-drustvene {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    /* Dodatno smanjenje paddinga na manjim ekranima da se dobije više prostora za tekst */
+    .onama, .usluge, .odabir, .radovi, .kontakti, 
+    .s-frezanje, .s-podno, .s-centralno, .s-kotlovnice, 
+    .s-vodovod, .s-kupaonice, .s-iskopi, .s-drenaza, .s-okucnica {
+        padding: 50px 15px;
+    }
+}    
+
+    
