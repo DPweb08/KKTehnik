@@ -46,7 +46,7 @@ h1 {
 /* ==========================================================================
    2. Main Hero Sekcija (Pozadina i Animacija)
    ========================================================================== */
-.main,.main_frezanje, .main_podno, .main_centralno, .main_kotlovnica, .main_vodovod, .main_kupaonica, .main_iskopi, .main_drenaže, .main_okučnice {
+.main,.main_frezanje, .main_podno, .main_centralno, .main_kotlovnica, .main_vodovod, .main_kupaonica, .main_iskopi, .main_drenaza, .main_okucnica {
     min-height: 100vh;
     background-repeat: no-repeat;
     background-size: cover;
