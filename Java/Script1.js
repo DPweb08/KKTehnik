@@ -1,12 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     // --- 1. DIO: Animacija kartica pri skrolanju ---
-    const kartice = document.querySelectorAll('.b-usluga, .b-odabir, .bm-onama, .b-onama, .bs_frezanje');
+    const kartice = document.querySelectorAll('.b-usluga, .b-odabir, .bm-onama, .b-onama, .bs_frezanje, .s-prednosti li ');
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('prikazi');
-                // observer.unobserve(entry.target); // Otkomentiraj ako želiš da se dogodi samo jednom
+                // observer.unobserve(entry.target); // Otkomentiraj ako Å¾eliÅ¡ da se dogodi samo jednom
             }
         });
     }, {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const navToggle = document.querySelector('.nav-toggle');
     const navList = document.querySelector('.nav-list');
 
-    // Kada kliknemo na hamburger gumb, dodajemo/mièemo klasu 'active'
+    // Kada kliknemo na hamburger gumb, dodajemo/miÃ¨emo klasu 'active'
     if (navToggle && navList) {
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
