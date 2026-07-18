@@ -1108,7 +1108,7 @@ animation: changeimage1 15s infinite ease-in-out;
     width: 100%;
     max-width: 1500px;
 }
-.g_frezanje1 {
+.g_odabir {
     display: flex;
     justify-content: space-between;
     align-items: stretch;
