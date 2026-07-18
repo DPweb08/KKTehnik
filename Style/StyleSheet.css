@@ -1319,6 +1319,57 @@ animation: changeimage1 15s infinite ease-in-out;
     height: auto;
 }
 /* ==========================================================================
+   10. Sekcija vodovod
+   ========================================================================== */
+.main_vodovod {
+    background-image: url("../Slike/vodovod/vodovod_image4.png");
+    min-height: 70vh;
+    background-position: center;
+}
+
+.n2 {
+    color: black;
+    font-size: 25px;
+    text-align: center;
+}
+
+.s-vodovod {
+    padding: 80px 20px;
+    background-color: #1f536b;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    scroll-margin-top: 40px;
+}
+
+    .s-vodovod .n1 {
+        color: #ffffff;
+    }
+
+.g_vodovod {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+    width: 100%;
+    max-width: 1500px;
+}
+
+.bs_vodovod {
+    border: 3px solid white;
+    padding: 30px 20px;
+    position: relative;
+    width: 100%;
+    max-width: 300px; /* Malo povećana da drži balans s tekstom */
+    height: 400px; /* Povećana visina da prati dužinu desnog teksta */
+    box-sizing: border-box;
+    text-align: center;
+    border-radius: 8px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+/* ==========================================================================
    11. Sekcija kupaonice
    ========================================================================== */
 .main_kupaonice {
