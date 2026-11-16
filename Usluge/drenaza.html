@@ -12,96 +12,82 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Iceberg&family=Sekuya&family=Stick+No+Bills:wght@200..800&display=swap" rel="stylesheet">
+    <style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #101820, #263746);
+        color: white;
+        text-align: center;
+    }
+
+    .container {
+        max-width: 650px;
+        padding: 45px 30px;
+        border: 1px solid #52616d;
+        border-radius: 18px;
+        background: rgba(255,255,255,0.06);
+        box-shadow: 0 10px 35px rgba(0,0,0,0.3);
+    }
+
+    h1 {
+        color: #4fbae4;
+        font-size: 32px;
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 21px;
+        font-weight: normal;
+    }
+
+    p {
+        font-size: 17px;
+        line-height: 1.7;
+        color: #e0e0e0;
+    }
+
+    .logo {
+        font-size: 35px;
+        font-weight: bold;
+        margin-bottom: 35px;
+    }
+
+    .footer {
+        margin-top: 35px;
+        font-size: 14px;
+        color: #aaa;
+    }
+</style>
 </head>
 <body>
-    <div class="main_drenaza">
-        <nav class="navbar">
-    <div class="nav-con">
-        <img src="../Slike/KK_Tehnik_image.jpg" alt="Alternate Text" class="nav-logo" />
-        <button class="nav-toggle">
-            <span class="bar"></span>
-            <span class="bar"></span>
-            <span class="bar"></span>
-        </button>
-        <ul class="nav-list">
-            <li><a href="../index.html">KK&nbsp;  <span class="iceberg-regular">Tehnik</span></a></li>
-            <li><a href="../index.html#onama-sekcija">O nama</a></li>
-            <li class="dropdown">
-                <a href="../index.html#usluge-sekcija" class="dropbth">Usluge</a>
-                <div class="dropdown-content">
-                    <a href="../Usluge/Frezanje.html">Frezanje</a>
-                    <a href="../Usluge/podno.html">Podno grijanje</a>
-                    <a href="../Usluge/centralno.html">Centralno grijanje</a>
-                    <a href="../Usluge/kotlovnice.html">Kotlovnice</a>
-                    <a href="../Usluge/vodovod.html">Vodovodne Instalacija</a>
-                    <a href="../Usluge/kupaonice.html">Adaptacije Kupaonice</a>
-                    <a href="../Usluge/iskopi.html">Iskopi</a>
-                    <a href="../Usluge/drenaza.html">Izrada drenaže</a>
-                    <a href="../Usluge/okucnice.html">Okučnice</a>
-                </div>
-            </li>
-            <li><a href="../index.html#odabir-sekcija">Zašto mi</a></li>
-            <li><a href="../index.html#radovi-sekcija">Radovi</a></li>
-            <li><a href="../index.html#kontakti-sekcija">Kontakti</a></li>
-        </ul>
-    </div>
+     <div class="container">
 
-</nav>
-    </div>
-    <div class="usluge">
-        <h1 class="n1">Izrada drenaže</h1>
-        <h3 class="n2">
-            Izvodimo sustave drenaže koji učinkovito odvode višak vode i štite objekte od vlage i oštećenja.
-        </h3>
-    </div>
-   <div class="g_odabir">
-    <div class="odabir" style="box-sizing: border-box; flex: 1; padding: 40px 20px; margin:0; ">
-        <h2 class="n1">Profesionalna izrada drenaže oko kuća i objekata</h2>
-        <p class="n2">
-            KK Tehnik izvodi kompletnu izradu drenaže oko obiteljskih kuća,
-            poslovnih objekata, garaža i temelja. Kvalitetno izveden sustav
-            drenaže sprječava zadržavanje podzemnih i oborinskih voda,
-            smanjuje vlagu u zidovima te produžuje vijek trajanja objekta.
-        </p>
+     <div class="logo">KK <span style="color: #4fbae4">Tehnik</span></div>
 
-        <p class="n2">
-            Radove izvodimo strojno uz precizno iskopavanje kanala,
-            postavljanje drenažnih cijevi, geotekstila i odgovarajućeg
-            drenažnog materijala kako bi sustav dugoročno funkcionirao bez
-            začepljenja i problema.
-        </p>
-    </div>
-    <div class="s-prednosti">
-        <h2 class="n1">Kako izgleda izrada drenaže?</h2>
-        <ul class="n2">
-            <li>✔ Pregled terena i određivanje trase drenaže.</li>
-            <li>✔ Iskop kanala oko objekta.</li>
-            <li>✔ Postavljanje geotekstila.</li>
-            <li>✔ Ugradnja perforiranih drenažnih cijevi.</li>
-            <li>✔ Zatrpavanje drenažnim šljunkom.</li>
-            <li>✔ Spajanje na odvod ili sabirni šaht</li>
-            <li>✔ Završno uređenje terena.</li>
-        </ul>
-    </div>
-</div>
-<div class="s-drenaza">
-    <h1 class="n1">Slike radova</h1>
-    <div class="g_drenaza">
-        <div class="bs_drenaza">
-            <img src="../Slike/drenaže/drenaze_image1.png" alt="Izrada_drenaže1" class="box-image" />
-        </div>
-        <div class="bs_drenaza">
-            <img src="../Slike/drenaže/drenaze_image2.png" alt="Izrada_drenaže2" class="box-image" />
-        </div>
-        <div class="bs_drenaza">
-            <img src="../Slike/drenaže/drenaze_image3.png" alt="Izrada_drenaže3" class="box-image" />
-        </div>
-        <div class="bs_drenaza" style="height:225px;">
-            <img src="../Slike/drenaže/drenaze_image4.png" alt="Izrada_drenaže4" class="box-image" style="height:auto" />
-        </div>
+     <h1>Stranica je privremeno zatvorena</h1>
 
-    </div>
-</div>
-    <script src="../Java/Script1.js"></script>
+     <h2>U tijeku je održavanje</h2>
+
+     <p>
+         Molimo vas da pokušate ponovno kasnije.
+     </p>
+
+     <p><strong>Hvala na razumijevanju!</strong></p>
+
+     <div class="footer">
+         KK Tehnik
+     </div>
+
+ </div>
 </body>
 </html>
